@@ -73,6 +73,7 @@ module.exports = function (ctx) {
         'QSelect',
         'QListHeader',
         'QItem',
+        'QPopover',
         'QInput',
         'QPullToRefresh',
         'QField',
