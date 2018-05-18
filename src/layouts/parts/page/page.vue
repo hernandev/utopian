@@ -16,6 +16,15 @@ export default {
     return {}
   },
 
+  // props.
+  props: {
+    // enable / disable meta bar.
+    meta: {
+      type: Boolean,
+      default: true
+    }
+  },
+
   // computed properties.
   computed: {
 
