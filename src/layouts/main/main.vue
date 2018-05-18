@@ -3,7 +3,6 @@
 <!-- component script -->
 <script>
 // imports.
-import ULayoutNavigation from 'src/layouts/parts/navigation/navigation'
 import ULayoutDrawer from 'src/layouts/parts/drawer/drawer'
 import { mapGetters, mapMutations } from 'vuex'
 
@@ -15,7 +14,6 @@ export default {
 
   // child components.
   components: {
-    ULayoutNavigation,
     ULayoutDrawer
   },
 
