@@ -1,0 +1,17 @@
+// layout wrapper.
+q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
+
+  // layout main header.
+  q-layout-header.layout-header(reveal)
+
+  // layout drawer menu.
+  u-layout-drawer
+
+  // main content / router content.
+  q-page-container.fit
+    // route change transition (animation).
+    transition(:duration="transitionDuration", enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
+      // router view.
+      router-view(:key="$route.fullPath")
+    // ajax magic loading bar.
+    q-ajax-bar(color="primary", size="3px")
