@@ -5,8 +5,7 @@ import store from 'src/store'
 const beforeEach = async (to, from, next) => {
   // check for the store derivation key.
   await store.dispatch('prepareEncryption')
-  const username = await store.dispatch('auth/loadUser').catch(() => null)
-  console.log(username)
+  await store.dispatch('auth/loadUser').catch(() => null)
 
   // load the current accounts.
   // const accounts = await store.dispatch('accounts/loadAccounts')
