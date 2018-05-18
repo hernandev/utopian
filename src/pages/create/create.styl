@@ -1,0 +1,39 @@
+@import "~variables"
+
+.u-page.u-page-create {
+  .editor-wrapper {
+    display flex
+    height 100hv
+    text-area {
+      height 100hv
+    }
+  }
+  .q-layout-page.u-page {
+    padding 0
+  }
+  .post-body {
+    width 100%
+    padding 0
+  }
+  .u-page {
+    display flex
+  }
+
+  .editor {
+    padding 15px
+  }
+  .side-editor {
+    .q-input {
+      display flex
+      height 100%
+      width 100%
+      justify-content flex-start
+      & > *, & > * > * {
+        height 100%
+        justify-content flex-start
+      }
+    }
+  }
+}
+
+
