@@ -14,3 +14,10 @@ export const setExpiration = (state, expiration) => {
 export const setToken = (state, token) => {
   state.token = token
 }
+
+// clear the store user immediately.
+export const clearUser = (state) => {
+  state.username = null
+  state.expiration = null
+  state.token = null
+}

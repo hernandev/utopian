@@ -16,7 +16,7 @@ export const token = ({ token }) => token
 // check user session is valid.
 export const check = ({ username, expiration, token }) => {
   // check user data empty.
-  const hasEmptyFields = (isEmpty(username) || isEmpty(expiration) || !isEmpty(token))
+  const hasEmptyFields = (isEmpty(username) || isEmpty(expiration) || isEmpty(token))
 
   // return false for empty fields.
   if (hasEmptyFields) {

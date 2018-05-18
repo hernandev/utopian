@@ -57,3 +57,13 @@ export const loginWithCallback = async ({ state, commit, dispatch }, payload) =>
     ])
   })
 }
+
+// user logout action.
+export const logout = ({ commit }) => {
+  // remove local database itens related to the user.
+  return user.bulkRemove(['username', 'token', 'expiration'])
+    // make sure to clear the store.
+    .then((result) => { commit('clearUser'); return result })
+    // resolve as true.
+    .then(() => Promise.resolve(true))
+}
