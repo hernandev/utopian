@@ -1,0 +1,16 @@
+// component page.
+q-page.u-page.u-page-boxed.u-page-settings
+  div.row.u-page-inner.justify-center
+    div.col-md-8.col-sm-12
+
+      //// wrapper row (box-row).
+      //div.row.fit
+      //  // inner page wrapper.
+      //  div.col.u-page-inner
+      // form field (language selection).
+
+      q-field(:label="$t('common.language')", orientation="vertical")
+        q-select(:options="languages", v-model="lang")
+
+      q-field(:label="$t('common.language')", orientation="vertical")
+        q-select(:options="languages", v-model="lang")
