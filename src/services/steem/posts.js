@@ -8,7 +8,7 @@ import { map, get } from 'lodash-es'
 export const getContent = (author, permlink) => {
   const contentGetter = promisify(api.getContent)
 
-  return contentGetter(author.replace('@', ''), permlink)
+  return contentGetter(author.replace('@', ''), permlink).then(parsePost)
 }
 
 // retrieve posts on generic method.
@@ -31,9 +31,11 @@ export const byTrending = (query) => {
 // initial / buggy pagination.
 export const byOrder = (order = 'trending', query, last = null) => {
   const getQuery = Object.assign({}, query)
+
   if (last) {
     getQuery['start_author'] = get(last, 'author')
     getQuery['start_permlink'] = get(last, 'permlink')
+    getQuery['limit'] = get(query, 'limit', 10) + 1
   }
 
   const method = order === 'trending' ? byTrending : byCreated
