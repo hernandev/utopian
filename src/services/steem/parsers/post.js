@@ -2,6 +2,7 @@
 import { get, attempt, find, filter, map } from 'lodash-es'
 import { categories } from 'src/services/utopian/categories'
 import { parseCurrencyString } from 'src/services/currencies/formatter'
+import { formatReputation } from 'src/services/steem/account'
 import moment from 'moment'
 
 // post parser.
@@ -37,6 +38,12 @@ export const parsePost = (post) => {
 
   // normalize a reply key.
   post._net_replies = parseInt(get(post, 'children'))
+
+  // avatar helper.
+  post._author_avatar = 'https://img.blocker.press/a/' + get(post, 'author')
+
+  // parsed author reputation.
+  post._author_reputation = formatReputation(get(post, 'author_reputation'))
 
   // return the post.
   return post
