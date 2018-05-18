@@ -1,0 +1,20 @@
+// external page component wrapper.
+div.u-page.row.justify-between.fit
+
+  // page left side (meta column)
+  div.u-page-meta.col-md-3.col-xs-12.flex.fit
+    // meta slot.
+    slot(name="meta")
+
+  // page right side (main content)
+  div.u-page-main.col-md-9.col-xs-12.flex
+    // make scrollable
+    q-scroll-area(style="width: 100%; height: auto")
+      // wrap on a page.
+      q-page.u-page
+        // main content slot.
+        slot(name="main")
+
+
+
+
