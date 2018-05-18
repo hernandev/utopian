@@ -1,0 +1,119 @@
+@import "~variables"
+
+.u-page-post {
+
+  .post-content {
+    max-width 850px
+    padding 0 16px
+    .time-ago {
+      font-size 14px
+      font-weight normal
+      opacity 0.8
+    }
+    .row-author {
+      margin-top 20px
+      .author-details {
+        display flex
+        flex-direction row
+        justify-content flex-start
+        .name {
+          line-height 32px
+          font-size 16px
+          padding-bottom 0
+        }
+        .reputation, .reputation span {
+          font-size 12px
+          line-height 36px
+          margin-left 5px
+        }
+      }
+    }
+    .post-title {
+      font-size 26px
+      font-weight 600
+      margin 30px 0
+      padding 0
+    }
+    .post-body {
+      padding 0
+    }
+  }
+
+
+  .u-page-meta > div {
+    padding-right 20px
+    padding-left 20px
+    margin 10px 0
+    &:first-child {
+      margin-top 26px
+      text-align left
+    }
+  }
+  .q-item-label {
+    font-size 26px
+  }
+  .row.row-category {
+    div {
+
+      text-transform uppercase
+      font-size 18px
+      // color: $primary
+      font-weight 600
+      .q-icon {
+        margin-right 5px
+      }
+    }
+  }
+
+  .row.row-stats {
+    .stats {
+      font-weight 600
+      font-size 16px
+      .q-icon {
+        font-weight 600
+        opacity 0.6
+        margin-right 4px
+      }
+      display flex
+      .likes {
+        margin-left 8px
+      }
+    }
+  }
+  .row.row-rewards {
+    font-size 20px
+    margin 40px 0 0 0
+    font-weight 600
+    font-family 'Roboto'
+
+
+  }
+  .u-post-author {
+    // padding-top 20px
+  }
+
+  .row.row-tags {
+    .tag {
+      margin-left 5px
+      margin-top 5px
+    }
+    .tags {
+      line-height 2em
+      margin-top 20px
+      white-space word-wrap
+      display flex
+      flex-direction column
+      .q-btn.tag {
+        line-height 1em
+        padding 0.285em 0.5em
+        font-weight 600
+        font-size 14px
+        // padding 0.1em
+        .q-btn-inner {
+          line-height 1em
+        }
+      }
+    }
+  }
+
+}

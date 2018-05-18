@@ -1,2 +1,40 @@
-q-page.flex.flex-center
-  img(alt="SteemBox Logo", title="SteemBox Logo", src="~assets/steem-box-logo.svg")
+u-layout-page.u-page-index
+
+  template(slot="meta")
+    //img.u-brand(src="~assets/img/heart-text-black.svg")
+    q-list.full-width.categories-list(no-border, multiline)
+
+
+      q-item(:to="{ name: 'posts' }", :exact="true")
+        q-item-side(style="min-width: 20px")
+          q-icon.ut-utopian
+        q-item-main
+          .q-item-label All
+      template(v-for="category in categoryOptions", separator)
+        q-item(:to="{ name: 'posts-category', params: { category: category.value } }")
+          q-item-side(style="min-width: 20px")
+            q-icon(:class="'ut-' + category.value")
+
+          q-item-main
+            .q-item-label
+              | {{ $t('utopian.categories.' + category.value) }}
+    // div.more
+      button(@click="loadPosts") more
+
+  template(slot="main")
+    q-infinite-scroll(:handler="loadPostsScroll", ref="infiniteScroll")
+      q-list.flex.posts-list(padding, separator, sparse, no-border, multiline)
+        template(v-for="item in visiblePosts", v-if="item.parent_permlink === 'utopian-io'")
+          u-post-preview(:post="item")
+
+
+      q-spinner-dots(slot="message", :size="40", style="margin: 0 auto")
+      //    q-pull-to-refresh(:handler="loadPosts", inline)
+      // div.flex.fit(v-if="loading === true", style="padding: 50px").justify-center
+        q-icon(color="primary", name="fas fa-sync-alt").animate-spin
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+u-layout-page.u-page-post
+
+  template(slot="meta", v-if="post !== null")
+
+    div.row.row-category.justify-center.u-brand
+      div.justify-center
+        //img(src="~assets/img/text-black.svg")
+        q-icon(:class="'ut-' + post._category")
+        | {{ post._category }}
+
+
+    div.row.row-rewards.justify-end
+      div.payout(v-if="post !== null") $ {{ post._pending_payout_value }}
+
+
+    div.row.row-stats.justify-end
+      div.stats(v-if="post !== null")
+        div.replies
+          q-icon(name="icon-bubbles")
+          | {{ post._net_replies }}
+        div.likes
+          q-icon(name="icon-like")
+          | {{ post._net_votes }}
+    div.row.row-tags.justify-end
+      div.tags
+        q-btn.tag(color="primary", dense, size="", outline, :key="tag.id", v-for="tag in post._visible_tags")
+          | {{ tag.label }}
+
+
+  div.row.flex.justify-center(slot="main")
+
+
+    div.post-content(v-if="post !== null")
+      div.row.justify-between.row-author
+        u-post-author(:post="post", :reverse="true")
+        div.time-ago
+          | {{ post._time_created_from_now }}
+      div.post-title {{ post.title }}
+        // template(v-for="item in posts", separator, v-if="item.parent_permlink === 'utopian-io'")
+        // u-post-preview(:post="post", v-if="post !== null", :show-except="false")
+      div.post-body(v-html="postBody")
