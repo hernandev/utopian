@@ -32,7 +32,7 @@ export default [
         meta: {weight: 10}
       },
       {path: 'create', name: 'create', component: () => import('src/pages/create/create'), meta: {weight: 10}},
-      {path: 'activity', name: 'activity', component: () => import('src/pages/activity/activity'), meta: {weight: 20}},
+      // {path: 'activity', name: 'activity', component: () => import('src/pages/activity/activity'), meta: {weight: 20}},
       {path: 'settings', name: 'settings', component: () => import('src/pages/settings/settings'), meta: {weight: 50}}
     ]
   },
