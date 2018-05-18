@@ -1,0 +1,33 @@
+// post preview wrapper.
+q-item.u-post-preview(:to="post.url", :link="false")
+  q-item-main
+    div.row.post-preview-row
+      div.col-md-9.col-sm-12
+
+        div.q-item-body
+
+          div.q-item-label {{ post.title }}
+          div.q-item-except(v-if="showExcept === true")
+            div(style="overflow: hidden") {{ except }}
+
+        div.tags
+          q-btn.tag(color="primary", dense, size="", outline, :key="tag.id", v-for="tag in post._visible_tags")
+            | {{ tag.label }}
+
+      div.col-md-3.col-sm-12.post-meta
+
+        div.item-category(v-if="post._category !== null")
+          span {{ post._category }}
+          div.payout $ {{ post._pending_payout_value }}
+
+        div.details
+          div.author
+            div.author-details
+              div.name
+                span {{ '@' + post.author  }}
+                span.reputation {{ post._author_reputation }}
+              div.time-ago {{ post._time_created_from_now }}
+            div.avatar
+              img(:src="post._author_avatar")
+
+
