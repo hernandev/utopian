@@ -34,19 +34,13 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "@blocker/steem-api": "^1.1.0",
     "babel-eslint": "^8.2.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bluebird": "^3.5.1",
-    "devtron": "1.4.0",
     "dexie-observable": "^1.0.0-beta.4",
     "dotenv": "^5.0.1",
-    "electron": "^1.8.6",
-    "electron-debug": "1.5.0",
-    "electron-devtools-installer": "2.2.1",
-    "electron-packager": "11.1.0",
     "embed-js": "^5.0.3",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^11.0.0",
@@ -59,11 +53,9 @@
     "eslint-plugin-vue": "^4.3.0",
     "github-api": "^3.0.0",
     "langmap": "0.0.16",
-    "lato-font": "^3.0.0",
     "lodash-es": "^4.17.10",
     "marked": "^0.3.19",
     "marked-plaintext": "^0.0.2",
-    "node-fetch": "^2.1.2",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "quasar-cli": "^0.15.14",
@@ -73,8 +65,7 @@
     "sc2-sdk": "^1.0.2",
     "simple-line-icons": "^2.4.1",
     "typeface-roboto-mono": "^0.0.54",
-    "typeface-source-sans-pro": "^0.0.54",
-    "ubuntu-fontface": "^0.1.13"
+    "typeface-source-sans-pro": "^0.0.54"
   },
   "engines": {
     "node": ">= 8.9.0",
