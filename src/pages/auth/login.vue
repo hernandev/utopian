@@ -16,20 +16,26 @@ export default {
     }
   },
 
+  methods: {
+    callbackURL () {
+      const callbackHref = this.$router.resolve({ name: 'auth.callback' }).href
+      const base = this.$router.mode === 'hash' ? '/' : ''
+
+      return window.location.origin + base + callbackHref
+    }
+  },
+
   // mounted hook.
   mounted () {
     // start SC2
     const api = SC2.Initialize({
       app: process.env.SC2_APP,
-      callbackURL: process.env.SC2_CALLBACK,
+      callbackURL: this.callbackURL(),
       scope: ['vote', 'comment', 'comment_options', 'custom_json']
     })
 
-    // assign the redirect URL.
-    this.url = api.getLoginURL()
-
-    // redirect to SteemConnect for login.
-    window.location = this.url
+    window.location = api.getLoginURL()
+    // window.location = this.url
   }
 }
 </script>
