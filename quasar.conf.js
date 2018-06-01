@@ -1,6 +1,6 @@
 // Configuration for your app.
-const parsed = require('dotenv').load()
-const envVars = parsed['parsed']
+const envVars = require('dotenv').load()['parsed']
+
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
@@ -10,41 +10,53 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'vuex-router-sync',
-      'bootstrap'
+      'bootstrap',
+      'firebase'
     ],
     css: [
       'app.styl'
     ],
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
-      'fontawesome'
+      'roboto-font',
+      'mdi'
     ],
     supportIE: false,
-    vendor: {
-      add: [],
-      remove: []
-    },
     build: {
       env: {
         SC2_APP: envVars['SC2_APP'],
         SC2_CALLBACK: envVars['SC2_CALLBACK']
       },
       scopeHoisting: true,
-      // vueRouterMode: 'hash',
-      vueRouterMode: 'history',
+      vueRouterMode: 'history', // 'hash' : 'history'
       // publicPath: '',
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
-      // useNotifier: false,
+      useNotifier: false,
+
+      // webpack configuration.
       extendWebpack (cfg) {
+        // node mode.
+        cfg.node.process = true
+        cfg.node.setImmediate = true
+
+        // main loader / js config.
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules|quasar)/
         })
-        cfg.resolve.alias['lodash'] = 'lodash-es'
+
+        // pug loader settings.
+        cfg.module.rules.push({
+          enforce: 'pre',
+          test: /\.pug$/,
+          oneOf: [
+            { resourceQuery: /^\?vue/, use: ['pug-plain-loader'] },
+            { use: ['raw-loader', 'pug-plain-loader'] }
+          ]
+        })
       }
     },
     devServer: {
@@ -54,7 +66,7 @@ module.exports = function (ctx) {
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {
-      iconSet: 'fontawesome',
+      iconSet: 'mdi',
       components: [
         'QLayout',
         'QLayoutHeader',
@@ -63,7 +75,6 @@ module.exports = function (ctx) {
         'QTab',
         'QDatetimePicker',
         'QDatetime',
-        'QDatetime',
         'QTabPane',
         'QRouteTab',
         'QLayoutDrawer',
@@ -71,7 +82,6 @@ module.exports = function (ctx) {
         'QBtnDropdown',
         'QList',
         'QSelect',
-        'QListHeader',
         'QItem',
         'QPopover',
         'QInput',
@@ -81,13 +91,10 @@ module.exports = function (ctx) {
         'QFabAction',
         'QTooltip',
         'QPageSticky',
-        'QScrollArea',
         'QInfiniteScroll',
         'QSpinnerDots',
-        'QItemMain',
         'QAjaxBar',
         'QItemSeparator',
-        'QItemSide',
         'QItemTile',
         'QPageContainer',
         'QPage',
@@ -98,16 +105,16 @@ module.exports = function (ctx) {
         'QBtn',
         'QScrollArea',
         'QIcon',
-        'QList',
         'QListHeader',
-        'QItem',
+        'QCollapsible',
         'QItemMain',
         'QItemSide',
         'QBtnToggle'
       ],
       directives: [
         'Ripple',
-        'CloseOverlay'
+        'CloseOverlay',
+        'BackToTop'
       ],
       // Quasar plugins
       plugins: [
@@ -116,8 +123,7 @@ module.exports = function (ctx) {
         'AddressbarColor'
       ]
     },
-    animations: 'all', //
-    // animations: [],
+    animations: 'all', // animations: []
     pwa: {
       cacheExt: 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
       manifest: {
