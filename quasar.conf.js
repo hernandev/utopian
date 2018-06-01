@@ -1,6 +1,7 @@
-// Configuration for your app.
-const envVars = require('dotenv').load()['parsed']
+// environment config.
+require('dotenv').config()
 
+// quasar / app config.
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
@@ -10,8 +11,7 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'vuex-router-sync',
-      'bootstrap',
-      'firebase'
+      'bootstrap'
     ],
     css: [
       'app.styl'
@@ -23,8 +23,7 @@ module.exports = function (ctx) {
     supportIE: false,
     build: {
       env: {
-        SC2_APP: envVars['SC2_APP'],
-        SC2_CALLBACK: envVars['SC2_CALLBACK']
+        SC2_APP: process.env.SC2_APP
       },
       scopeHoisting: true,
       vueRouterMode: 'history', // 'hash' : 'history'
