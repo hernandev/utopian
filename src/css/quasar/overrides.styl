@@ -1,0 +1,39 @@
+// popover style overrides.
+.q-popover {
+  border-radius 4px
+  // inner popover q-list
+  .q-list {
+    padding-top 0
+    padding-bottom 0
+  }
+  .q-item {
+    min-height 1.4em
+    line-height 1.4em
+
+  }
+  .q-item-side {
+    min-width: 1px
+  }
+  .q-item-side, .q-item-main {
+    & > * {
+      min-height 1.2em
+    }
+    // display inline-block
+    line-height 1.2em
+    padding 4px 0
+  }
+
+}
+
+
+// normalize icon size.
+.q-btn, .q-item {
+  .q-icon {
+    font-size 1em
+  }
+}
+
+// global field margin.
+.q-field {
+  margin: 0 0 32px 0
+}

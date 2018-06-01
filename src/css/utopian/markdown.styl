@@ -1,0 +1,126 @@
+.markdown-content {
+  .disabled, [disabled] {
+    opacity 0.8 !important
+  }
+  ul.contains-task-list {
+    padding-left 0 !important
+  }
+  li.task-list-item {
+    list-style-type none
+  }
+  font-family $typography-font-family-comments
+  table {
+    border-collapse collapse
+    thead > tr {
+      background $grey-2
+      color $grey-9
+    }
+    tbody > tr:nth-child(even) {
+      background $grey-1
+    }
+    td, th {
+      padding 6px 12px
+      border: 1px solid $grey-4
+    }
+  }
+
+  & > :first-child {
+    margin-top 0
+  }
+  line-height 1.8em
+  a, a:hover, a:visited {
+    color $primary
+    text-decoration none
+  }
+  center {
+    text-align center
+    > * {
+      margin 0 auto
+      text-align center
+      display block
+    }
+  }
+  img {
+    max-width 100%
+  }
+  p, ul, li, a, i, em, code {
+    word-break break-word
+  }
+  p {
+    width 100%
+    word-break break-word
+    margin 0 0 1.3rem
+  }
+
+  color: $grey-10
+  padding 0 16px
+  font-size 18px
+  p > code {
+    font-weight 500
+  }
+  code {
+
+  }
+  pre {
+    background $grey-2
+    border-radius 4px
+    code {
+      width 100%
+      display block
+      padding 6px 12px
+      background $grey-2
+
+      color $tertiary
+      // color $grey-8
+      // font-weight 500
+      font-size 0.9em
+      letter-spacing 0.025em
+      font-family $typography-font-family-mono
+      // background $grey-2
+      // padding 4px
+      border-radius 2px
+    }
+    width 100%
+    overflow-x auto
+    //background $grey-2
+
+  }
+  h1, h2, h3, h4, h5, h6 {
+    &:not(.ejs-title) {
+      width 100%
+      font-weight 600
+      margin-bottom 0.1em
+      margin-top 2em
+      color $grey-9
+      font-family $typography-font-family
+    }
+  }
+  .ejs-title {
+    font-size 22px !important
+  }
+  h1:not(.ejs-title) {
+    font-size 24px
+  }
+  h2:not(.ejs-title) {
+    font-size 22px
+  }
+  h3:not(.ejs-title) {
+    font-size 21px
+  }
+  h4:not(.ejs-title) {
+    font-size 20px
+  }
+  h5:not(.ejs-title) {
+    font-size 19px
+  }
+  h6:not(.ejs-title) {
+    font-size 18px
+  }
+  ul {
+    margin 0
+    padding-left 1.2em
+    li {
+      line-height 2.1em
+    }
+  }
+}

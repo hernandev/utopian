@@ -1,140 +1,20 @@
-// app global css
+// apply variables.
 @import "~variables"
-@import "~simple-line-icons/css/simple-line-icons.css"
-@import "~typeface-source-sans-pro/index.css"
-@import "~typeface-roboto-mono/index.css"
-@import "~quasar-framework/src/css/core/helpers.styl"
-@import "~quasar-framework/src/css/core/flex.styl"
-@import "~quasar-framework/src/css/core/size.styl"
-@import "~quasar-framework/src/css/core/mouse.styl"
 
-// import the custom utopian icon font.
-@import "./utopian-icons"
+// quasar global overrides.
+@import "quasar/overrides.styl"
 
-// vertical padding helper
-// @TODO this class is probably not required anymore.
-.no-vertical-padding {
-  padding-top 0
-  padding-bottom 0
-}
+// application styles.
 
-// generic wrapper elements style.
-html, body, .u-app {
-  display flex
-  height 100%
-  content: " "
-  float left
-  width 100%
-}
-
-// scrollable content hack.
-.q-layout-page, q-layout-page-container {
-  height 100%
-}
-
-// scrollable content hack.
-.u-app {
-  height 100%
-  width 100%
-}
-
-// normalize icon size.
-.u-app
-  .q-btn
-    .q-icon
-      font-size 1em
-
-// global padding.
-div, main
-  &.q-layout-page.u-page
-    padding: 12px 12px
-    @extend .fit
-
-
-    div.u-page-inner
-      @extend .fit
-      @extend .justify-center
-
-// global field margin.
-.q-field
-  margin: 0 0 32px 0
-
-// markdown post / preview rendering styles.
-.u-app {
-  .post-body {
-    & > :first-child {
-      margin-top 0
-    }
-    line-height 1.8em
-    a, a:hover, a:visited {
-      color $primary
-      text-decoration none
-    }
-    center {
-      text-align center
-      > * {
-        margin 0 auto
-        text-align center
-        display block
-      }
-    }
-    img {
-      max-width 100%
-    }
-    p, ul, li, a, i, em, code {
-      word-break break-word
-    }
-    p {
-      width 100%
-      word-break break-word
-      margin 0 0 1.3rem
-    }
-
-    font-family "Merriweather"
-    color: $grey-8
-    padding 0 16px
-    font-size 18px
-    code {
-      color $grey-8
-      font-weight 500
-      font-size 0.9em
-      letter-spacing 0.025em
-      font-family $typography-font-family-mono
-      background $grey-2
-      padding 4px
-      border-radius 2px
-    }
-    pre {
-      width 100%
-      overflow-x auto
-      background $grey-2
-    }
-    h1, h2, h3, h4, h5, h6 {
-      width 100%
-      font-weight 600
-      margin-bottom 0.1em
-      margin-top 2em
-      color $grey-9
-      font-family $typography-font-family
-    }
-    h1 {
-      font-size 32px
-    }
-    h2 {
-      font-size 26px
-    }
-    h3 {
-      font-size 24px
-    }
-    h4 {
-      font-size 20px
-    }
-    ul {
-      margin 0
-      padding-left 1.2em
-      li {
-        line-height 2.1em
-      }
-    }
-  }
-}
+// base grid/layout styles.
+@import "utopian/base.styl"
+// layout pages customizations.
+@import "utopian/pages.styl"
+// custom app fonts.
+@import "utopian/fonts.styl"
+// custom utopian icon font.
+@import "utopian/icons.styl"
+// code highlight styles.
+@import "utopian/highlight.styl"
+// styles for markdown rendered content.
+@import "utopian/markdown.styl"
