@@ -13,8 +13,8 @@ yarn-error.log*
 
 # Lock files
 # NPM lock file is ignored in favor use Yarn lock file.
-!package-lock.json
-yarn.lock
+package-lock.json
+!yarn.lock
 
 # Firebase
 .firebaserc
@@ -26,3 +26,6 @@ yarn.lock
 *.ntvs*
 *.njsproj
 *.sln
+
+# steem-js development (temporary)
+/steem-js
