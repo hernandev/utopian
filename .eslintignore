@@ -1,3 +1,4 @@
 /.quasar
 /dist
-/src/pages/post/sanitize-config.js
+/steem-js
+*.worker.js

@@ -1,8 +1,28 @@
 {
   "presets": [
-    [ "env", {"modules": false} ],
-    "stage-2"
+    [
+      "@babel/preset-env", {
+        "modules": false,
+        "loose": false,
+        "useBuiltIns": "usage"
+      }
+    ],
+    [
+      "@babel/preset-stage-2", {
+        "modules": false,
+        "loose": false,
+        "useBuiltIns": true,
+        "decoratorsLegacy": true
+      }
+    ]
   ],
-  "plugins": ["transform-runtime", "transform-async-to-generator", "transform-object-rest-spread"],
+  "plugins": [
+    [
+      "@babel/transform-runtime", {
+        "polyfill": false,
+        "regenerator": false
+      }
+    ]
+  ],
   "comments": false
 }
