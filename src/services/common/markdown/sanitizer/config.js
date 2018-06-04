@@ -1,9 +1,15 @@
 // normal / default sanitize-html rules.
 
 // url utils.
-import { isURL } from '../utils/url'
+import { url } from '../utils/regex'
 // other imports.
 import { get, toString } from 'lodash'
+
+// generate a regex for URL.
+const urlRegex = new RegExp(url, 'i')
+
+// match URL.
+const isURL = (candidate) => urlRegex.test(candidate)
 
 // extract an attribute from an object, ensuring a empty string value.
 const getAttribute = (attributes, name) => toString(get(attributes, name, ''))
