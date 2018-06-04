@@ -9,11 +9,11 @@ div.u-page.row.justify-between.fit
   // page right side (main content)
   div.u-page-main.flex.fit(v-bind:class="{ 'col-md-9': meta, 'col-xs-12': meta, 'col-md-12': !meta }")
     // make scrollable
-    q-scroll-area(style="width: 100%; height: auto")
-      // wrap on a page.
-      q-page.u-page
-        // main content slot.
-        slot(name="main")
+    // q-scroll-area(style="width: 100%; height: 100vh")
+    // wrap on a page.
+    q-page.u-page()
+      // main content slot.
+      slot(name="main")
 
 
 

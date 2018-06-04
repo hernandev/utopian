@@ -1,0 +1,73 @@
+// variables import.
+@import "~variables"
+@import "~quasar-framework/src/css/core/helpers.styl"
+@import "~quasar-framework/src/css/core/flex.styl"
+@import "~quasar-framework/src/css/core/size.styl"
+@import "~quasar-framework/src/css/core/mouse.styl"
+
+
+.q-toolbar.u-toolbar {
+  padding 0 !important
+  div.toolbar-container {
+    // max-width 1400px
+    //padding-left 24px
+    //padding-right 24px
+    justify-content space-between
+    align-items center
+    display flex
+    width 100% !important
+    // padding 0 100px
+    height 100%
+    vert-align middle
+  }
+  .link-home {
+    display inline-block
+    white-space nowrap
+    line-height 45px
+    color white
+  }
+  img.u-logo {
+    margin-left -4px
+    height 26px
+  }
+  span.logo-text {
+
+  }
+  div.u-toolbar-right {
+    .u-add {
+      font-size 13px
+      padding: 8px 12px
+      line-height 1em
+      .q-icon {
+        width 14px
+        padding 0
+        font-weight 600
+        font-size 22px
+        line-height 16px
+      }
+
+      font-weight 600
+      letter-spacing 0.05em
+    }
+    &.desktop {
+      .u-add .q-icon {
+        margin-right 4px
+        padding-left 6px
+        padding-right 12px
+      }
+    }
+    > * {
+      margin-left 16px
+    }
+    font-size 22px
+    img.avatar {
+      height 32px
+      width 32px
+      border-radius 50%
+      border: 2px solid rgba(white, 0.6)
+      // box-shadow 0 0 2px 2px rgba(255, 255, 255, 0.2)
+    }
+  }
+
+  height 60px
+}
