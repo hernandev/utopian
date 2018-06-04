@@ -1,40 +1,78 @@
 <script>
-import { getContent } from 'src/services/steem/posts'
-import ULayoutPage from 'src/layouts/parts/page/page'
+import { getState } from 'src/services/steem/posts'
 import UPostPreview from 'src/components/post-preview/post-preview'
+import UCommentsAuthorHeader from 'src/components/comments/author-header/author-header'
+import UCommentsVoteItem from 'src/components/comments/vote-item/vote-item'
 import UPostAuthor from 'src/components/posts/author/author'
-import { get } from 'lodash-es'
-import { parseAsHtml, parseAsPlainText } from 'src/services/steem/parsers/markdown'
+import UPostReply from 'src/components/posts/reply/reply'
+import { map, get, orderBy } from 'lodash-es'
+import UCommentsActions from 'src/components/comments/actions/actions'
+import { render } from 'src/services/steem/markdown'
 
 export default {
   name: 'PagePost',
   components: {
     UPostPreview,
-    ULayoutPage,
-    UPostAuthor
+    UPostAuthor,
+    UPostReply,
+    UCommentsActions,
+    UCommentsVoteItem,
+    UCommentsAuthorHeader
   },
   data () {
     return {
-      post: null
+      gist: null,
+      author: null,
+      permlink: null,
+      feed: {},
+      other: {},
+      post: null,
+      postBody: null,
+      replies: [],
+      sort: 'best'
     }
   },
   methods: {
-    makePlain (value) {
-      return parseAsPlainText(value)
+
+    loadContent () {
+      this.author = get(this.$route, 'params.author', null)
+      this.permlink = get(this.$route, 'params.permlink', null)
+
+      return getState(this.author, this.permlink)
+        .then((result) => {
+          this.feed = parseFloat(result.feed_price.base)
+          this.post = result.post
+          this.replies = result._replies
+          this.other = result
+          return result
+        })
+        .then((result) => {
+          return render(get(this.post, 'body', ''))
+            .then((data) => {
+              this.postBody = data
+              return data
+            })
+        })
     }
   },
+
   computed: {
-    postBody () {
-      return parseAsHtml(get(this.post, 'body'))
+
+    sortedReplies () {
+      return orderBy(this.replies, ['_author_reputation'], ['desc'])
+    },
+
+    activeVotes () {
+      const votes = map(get(this.post, 'active_votes', [], (vote) => {
+        vote.rshares = parseInt(vote.rshares)
+        vote.order = vote.weight * vote.percent
+        return vote
+      }))
+      return orderBy(votes, ['order'], ['desc'])
     }
   },
   mounted () {
-    const author = get(this.$route, 'params.author')
-    const permlink = get(this.$route, 'params.permlink')
-
-    getContent(author, permlink).then((result) => {
-      this.post = result
-    })
+    this.loadContent()
   }
 }
 </script>

@@ -1,41 +1,46 @@
-u-layout-page.u-page-post
+u-layout-page.u-page-post(:meta="false")
 
-  template(slot="meta", v-if="post !== null")
-
-    div.row.row-category.justify-center.u-brand
-      div.justify-center
-        //img(src="~assets/img/text-black.svg")
-        q-icon(:class="'ut-' + post._category")
-        | {{ post._category }}
-
-
-    div.row.row-rewards.justify-end
-      div.payout(v-if="post !== null") $ {{ post._pending_payout_value }}
-
-
-    div.row.row-stats.justify-end
-      div.stats(v-if="post !== null")
-        div.replies
-          q-icon(name="icon-bubbles")
-          | {{ post._net_replies }}
-        div.likes
-          q-icon(name="icon-like")
-          | {{ post._net_votes }}
-    div.row.row-tags.justify-end
-      div.tags
-        q-btn.tag(color="primary", dense, size="", outline, :key="tag.id", v-for="tag in post._visible_tags")
-          | {{ tag.label }}
-
-
+  // main post row wrapper.
   div.row.flex.justify-center(slot="main")
 
-
+    // post content element.
     div.post-content(v-if="post !== null")
+
+      // display author information.
       div.row.justify-between.row-author
-        u-post-author(:post="post", :reverse="true")
-        div.time-ago
-          | {{ post._time_created_from_now }}
+        // author header component.
+        u-comments-author-header(v-if="author !== null", :author="author")
+
+        // right side info.
+        div.text-right
+          // display posts tags.
+          div.tags
+            q-btn.tag(color="tertiary", dense, size="", outline, :key="tag.id", v-for="tag in post._visible_tags")
+              | {{ tag.label }}
+          // post created time ago.
+          div.time-ago(style="padding-top: 12px")
+            | {{ post._time_created_from_now }}
+
+      // separate with horizontal rule.
+      hr
+
+      // post title.
       div.post-title {{ post.title }}
-        // template(v-for="item in posts", separator, v-if="item.parent_permlink === 'utopian-io'")
-        // u-post-preview(:post="post", v-if="post !== null", :show-except="false")
-      div.post-body(v-html="postBody")
+
+      // post markdown content (rendered).
+      div.post-body.markdown-content(v-html="postBody")
+
+      // actions for the root post (vote, stats...).
+      u-comments-actions.post-actions(:comment="post")
+      // comments section ruler.
+      hr
+
+      // post relies wrapper.
+      div.post-replies
+        // title.
+        div.replies-title Comments
+        // loop the replies.
+        u-post-reply(v-for="reply in sortedReplies", :feed="feed", :key="reply.author + reply.permlink", @voted="loadContent", :reply="reply")
+
+      // back to top button (scroll to top).
+      q-btn.fixed-bottom-right(style="margin: 0 15px 15px 0", v-back-to-top="", round, color="primary", icon="mdi-arrow-up")
