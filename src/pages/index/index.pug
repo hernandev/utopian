@@ -44,11 +44,8 @@ u-layout-page.u-page-index
         template(v-for="item in visiblePosts", v-if="item.parent_permlink === 'utopian-io' && item._category")
           u-post-preview(:post="item")
 
-
+      // spinner for infinite scroll loading.
       q-spinner-dots(slot="message", :size="40", style="margin: 0 auto")
-      //    q-pull-to-refresh(:handler="loadPosts", inline)
-      // div.flex.fit(v-if="loading === true", style="padding: 50px").justify-center
-        q-icon(color="primary", name="fas fa-sync-alt").animate-spin
 
 
 
