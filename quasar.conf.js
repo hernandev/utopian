@@ -11,7 +11,8 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'vuex-router-sync',
-      'bootstrap'
+      'bootstrap',
+      'firebase'
     ],
     css: [
       'app.styl'
@@ -91,6 +92,7 @@ module.exports = function (ctx) {
         'QTooltip',
         'QPageSticky',
         'QInfiniteScroll',
+        'QSpinner',
         'QSpinnerDots',
         'QAjaxBar',
         'QItemSeparator',
@@ -119,7 +121,8 @@ module.exports = function (ctx) {
       plugins: [
         'Dialog',
         'Notify',
-        'AddressbarColor'
+        'AddressbarColor',
+        'Screen'
       ]
     },
     animations: 'all', // animations: []
