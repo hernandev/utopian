@@ -26,4 +26,8 @@ export default {
 </template>
 
 <!-- component styles. -->
-<style src="./guest.styl" lang="stylus"></style>
+<style lang="stylus">
+  .u-layout.u-layout-guest {
+    //
+  }
+</style>

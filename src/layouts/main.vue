@@ -3,9 +3,8 @@
 <!-- component script -->
 <script>
 // imports.
-import ULayoutDrawer from 'src/layouts/parts/drawer/drawer'
 import ULayoutToolbar from 'src/layouts/parts/toolbar/toolbar'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 
 // main layout component.
 export default {
@@ -15,7 +14,6 @@ export default {
 
   // child components.
   components: {
-    ULayoutDrawer,
     ULayoutToolbar
   },
 
@@ -28,9 +26,6 @@ export default {
         leave: 100
       },
 
-      // screen width detection.
-      screenWidth: window.innerWidth,
-
       // enable a black button with a route.
       controls: null
     }
@@ -42,37 +37,8 @@ export default {
     // map common getters.
     ...mapGetters('common', [
       'isMobile',
-      'isDesktop',
-      'drawerOpen',
-      'drawerCollapsed'
+      'isDesktop'
     ])
-  },
-
-  // component methods.
-  methods: {
-
-    // map common mutations as local methods.
-    ...mapMutations('common', [
-      'setDrawerCollapsed',
-      'setDrawerOpen'
-    ])
-
-    // // drawer custom action.
-    // controlDrawer () {
-    //   return this.isMobile ? this.setDrawerOpen() : this.setDrawerCollapsed()
-    // }
-  },
-
-  // mounted hook.
-  mounted () {
-    // create a listener for screen resize.
-    const resizeListener = () => {
-      // assign the window width locally.
-      this.screenWidth = window.innerWidth
-    }
-
-    // register the resize listener under the window resize event.
-    window.addEventListener('resize', resizeListener)
   }
 }
 </script>
@@ -87,12 +53,9 @@ q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
     // toolbar (navbar).
     u-layout-toolbar
 
-  // layout drawer menu.
-  // u-layout-drawer
-
   // main content / router content.
   q-page-container.fit
-    div.container.container-page
+    div.container.container-page(:class="{ 'container-large': ($route.meta.large === true) }")
       // route change transition (animation).
       transition(:duration="{ enter: 100, leave: 100 }", enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
         // router view.
@@ -110,8 +73,6 @@ q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
 
 // app wrapper.
 .u-app#q-app
-
-
 
   // main layout custom style.
 
