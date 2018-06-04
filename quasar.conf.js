@@ -11,8 +11,8 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'vuex-router-sync',
-      'bootstrap',
-      'firebase'
+      'bootstrap'
+      // 'firebase'
     ],
     css: [
       'app.styl'
