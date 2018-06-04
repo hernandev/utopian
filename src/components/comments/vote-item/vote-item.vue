@@ -54,7 +54,7 @@ export default {
       // get the vote value (float value).
       const voteValue = (this.rewardShares / this.recentClaims * this.rewardBalance * this.baseFeedPrice)
       // parse as currency.
-      return parseCurrencyString(voteValue, 2, 2)
+      return parseCurrencyString(voteValue, 1, 3)
     }
   }
 
