@@ -1,4 +1,3 @@
 /.quasar
 /dist
-/steem-js
 *.worker.js
