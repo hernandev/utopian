@@ -1,16 +1,69 @@
 @import "~variables"
 
-.u-page-index-side {
-
-
-}
-
 div.q-layout-page.u-page.u-page-index, main.q-layout-page.u-page.u-page-index {
   padding: 12px 24px
 }
-
+.desktop {
+  .u-page.u-page-index {
+    .u-filters {
+      .q-collapsible-inner {
+        & > .q-item {
+          display none
+        }
+      }
+    }
+  }
+}
 .u-page.u-page-index {
+  .u-filters {
+    .q-field-label-inner {
+      font-size 15px
+      min-height 22px
+      line-height 22px
+    }
+    .q-field-content {
+      padding-top 0
+    }
 
+    padding 0
+    .q-collapsible-sub-item {
+      padding-left 0
+      padding-top 0
+
+    }
+  }
+  .row-filters {
+
+    .q-btn-dropdown {
+      font-size 16px
+    }
+    .q-btn-inner {
+      text-transform capitalize
+    }
+  }
+  .row-filters + .row-filters {
+    // margin-top 20px
+  }
+  .field-order {
+    .q-list {
+      padding 0
+    }
+    .q-field-content {
+      padding-top 0
+    }
+    .q-btn {
+      padding 2px
+      min-height 20px
+    }
+    .q-focus-helper {
+      height 24px
+      display none
+    }
+  }
+  .u-label {
+    font-size 12px
+    color $form-dark
+  }
   .q-item {
     overflow hidden
   }
@@ -21,7 +74,7 @@ div.q-layout-page.u-page.u-page-index, main.q-layout-page.u-page.u-page-index {
 
   .select-category {
     border: 1px solid $primary
-    padding 4px 8px
+    padding 4px 0
     border-radius 4px
     color $primary
     .q-item-label {
@@ -36,119 +89,12 @@ div.q-layout-page.u-page.u-page-index, main.q-layout-page.u-page.u-page-index {
   .q-list.posts-list {
     padding 0
     .q-item {
-
-      padding-top 30px
-      padding-bottom 30px
-      &:first-child {
-        padding-top 10px
-      }
-      &:last-child {
-        padding-bottom 15px
-      }
+      border-radius 4px
+      background white
+      border 1px solid $grey-4
+      margin-bottom 15px
+      padding-top 15px
+      padding-bottom 15px
     }
   }
 }
-
-//.wallet-fab
-//  i,em
-//    font-style normal
-//
-//.u-page-settings
-//  .q-item {
-//    &:first-child {
-//      padding-top 0
-//    }
-//    padding 24.4px 0
-//  }
-//  .q-item-label {
-//    vert-align middle
-//    line-height 1em
-//    // margin 30px 0 15px 0
-//    font-size 1.4em
-//    font-weight 600
-//    color $grey-9
-//  }
-//
-//  .q-item-link {
-//    // border-radius px
-//    &:hover {
-//      background: inherit
-//    }
-//  }
-//
-//  .q-item-main {
-//    .sub-line {
-//      line-height 1em
-//      display flex
-//      font-size 16px
-//      color $grey-14
-//      font-weight 600
-//
-//      .time-ago {
-//        opacity 0.8
-//        font-weight normal
-//        font-size 14px
-//      }
-//
-//      .avatar {
-//        height 40px
-//        img {
-//          width 40px
-//          height 40px
-//          border-radius 50%
-//        }
-//      }
-//      .details {
-//        vertical-align top
-//        margin-left 10px
-//        height 40px
-//        display flex
-//        flex-direction column
-//        justify-content space-between
-//      }
-//    }
-//  }
-//
-//  .post-cover {
-//    width 300px
-//    height 158px
-//
-//    background-image: url("~assets/img/pixel.png")
-//    background-size cover
-//    background-position center center
-//    object-fit: scale-down;
-//    border none
-//  }
-//  .q-item-body {
-//    margin 12px 0
-//    padding 0
-//    font-family 'Source Sans Pro'
-//    color $grey-7
-//    overflow-x hidden
-//    max-height 80px
-//    line-height 1.3em
-//  }
-//  .q-item-label {
-//    white-space normal
-//  }
-//  .q-item-side.q-item-side-right {
-//    // max-width 300px
-//  }
-//  .tag {
-//    margin-right 5px
-//  }
-//  .tags {
-//    line-height 2em
-//    margin-top 20px
-//    white-space word-wrap
-//    .q-btn.tag {
-//      line-height 1em
-//      padding 0.285em 0.5em
-//      font-weight 600
-//      font-size 12px
-//      // padding 0.1em
-//      .q-btn-inner {
-//        line-height 1em
-//      }
-//    }
-//  }

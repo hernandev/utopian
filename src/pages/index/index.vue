@@ -1,13 +1,10 @@
 <script>
-import marked from 'marked'
-import Renderer from 'marked-plaintext'
 import { byOrder } from 'src/services/steem/posts'
 import moment from 'moment'
-import MarkdownImage from 'src/services/common/markdown-image'
 import UPostPreview from 'src/components/post-preview/post-preview'
 import ULayoutPage from 'src/layouts/parts/page/page'
 import { categories, categoryOptions } from 'src/services/utopian/categories'
-import { map, each, get, last, filter, attempt, debounce } from 'lodash-es'
+import { map, concat, get, last, filter, attempt, debounce } from 'lodash-es'
 
 export default {
   name: 'PageIndex',
@@ -17,9 +14,13 @@ export default {
   },
   data () {
     return {
-      order: 'trending',
+      sortBy: 'trending',
+      sortOptions: [
+        { label: 'Trending', value: 'trending' },
+        { label: 'New', value: 'new' }
+      ],
       loading: false,
-      category: 'development',
+      category: 'utopian-io',
       posts: [],
       search: ''
     }
@@ -27,22 +28,9 @@ export default {
   filters: {
     timeAgo (isoDateString) {
       return moment.utc(isoDateString).fromNow()
-    },
-    firstImage (markdownBody) {
-      const first = MarkdownImage.first(markdownBody)
-
-      if (first === null) {
-        return false
-      }
-      console.log(first)
-      return first
     }
   },
   methods: {
-    makePlain (value) {
-      const renderer = new Renderer()
-      return marked(value, { renderer })
-    },
     loadInitial () {
       this.loading = true
       return this.loadPosts().then((result) => {
@@ -56,17 +44,10 @@ export default {
     loadPosts (done) {
       const order = get(this.$route, 'meta.order', 'trending')
       const tag = get(this.$route, 'params.category', 'utopian-io')
-      console.log('last', get(last(this.posts), 'permlink', null))
-      return byOrder(order, { tag, limit: 80 }, last(this.posts))
+      return byOrder(order, { tag, limit: 40 }, last(this.posts))
         .then((result) => {
-          each(result, (post) => {
-            this.posts.push(post)
-          })
-          return result
-        })
-        .then((result) => {
-          console.log(result.length)
-          if (result.length < 80) {
+          this.posts = concat(this.posts, result)
+          if (result.length < 40) {
             attempt(done)
             this.$refs.infiniteScroll.stop()
           } else {
@@ -94,8 +75,9 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$store.getters)
-    // console.log(this.$route)
+    this.sortBy = get(this.$route, 'meta.order', 'trending')
+    this.category = get(this.$route, 'params.category', 'utopian-io')
+
     this.loadInitial()
     return true
   },
