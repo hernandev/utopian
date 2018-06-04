@@ -1,17 +1,11 @@
 // imports.
 import sdk from 'sc2-sdk'
 import { get } from 'lodash-es'
-import router from 'src/router'
 
 // generate the callback url from route and origin.
 const getCallbackURL = () => {
-  // generate the relative callback path.
-  const callbackHref = router.resolve({ name: 'auth.callback' }).href
-  // if on hash mode, an slack is needed to glue the origin and the path.
-  const base = router.mode === 'hash' ? '/' : ''
-
   // return the callback url including the origin (full URL).
-  return window.location.origin + base + callbackHref
+  return window.location.origin + '/' + 'auth/callback'
 }
 
 // determine the client id.

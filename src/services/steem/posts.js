@@ -2,13 +2,55 @@
 import { api } from 'src/services/steem/client'
 import { promisify } from 'src/services/common/promisify'
 import { parsePost } from './parsers/post'
-import { map, get } from 'lodash-es'
+import { map, mapValues, get, each } from 'lodash-es'
+// import { parseAsHtml } from 'src/services/steem/parsers/markdown'
+
+const fixUsername = (author) => {
+  return author.replace('@', '')
+}
 
 // retrieve a post content.
 export const getContent = (author, permlink) => {
-  const contentGetter = promisify(api.getContent)
+  return api.getContentAsync(fixUsername(author), permlink).then(parsePost)
+}
 
-  return contentGetter(author.replace('@', ''), permlink).then(parsePost)
+const arrayToObject = (values) => {
+  const result = {}
+
+  each(values, v => {
+    result[v] = v
+  })
+
+  return result
+}
+
+export const nestComments = (comments, post) => {
+  return mapValues(arrayToObject(post.replies), (replyPermlink) => {
+    const reply = get(comments, replyPermlink)
+    reply._replies = nestComments(comments, reply)
+    return reply
+  })
+}
+
+// const parseMarkdown = (post) => {
+//   post._body = parseAsHtml(post.body)
+//
+//   return post
+// }
+
+export const getState = (author, permlink) => {
+  return api.getStateAsync('utopian-io/' + author + '/' + permlink).then((response) => {
+    const comments = mapValues(response.content, parsePost)
+    response.content = mapValues(comments, (v) => v)
+    response.post = get(response.content, fixUsername(author) + '/' + permlink)
+    response._replies = nestComments(comments, response.post)
+    return response
+  })
+}
+
+// get content replies.
+export const getReplies = (author, permlink) => {
+  return api.getContentRepliesAsync(fixUsername(author), permlink)
 }
 
 // retrieve posts on generic method.
