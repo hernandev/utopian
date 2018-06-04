@@ -1,4 +1,4 @@
-<!-- settings component. -->
+<!-- settings page component. -->
 
 <!-- component script -->
 <script>
@@ -8,7 +8,7 @@ import resources from './resources'
 // component export.
 export default {
   // page name.
-  name: 'box-page-settings',
+  name: 'u-page-settings',
 
   // enable mixins.
   mixins: [ resources ]
