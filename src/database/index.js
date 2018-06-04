@@ -23,6 +23,7 @@ export const DB = initDb()
 export const secrets = DB.table('secrets')
 export const preferences = DB.table('preferences')
 export const user = DB.table('user')
+export const cache = DB.table('cache')
 
 // default export.
 export default DB

@@ -9,5 +9,7 @@ export default {
   // activity.
   activities: '[account+id],account,id,value.timestamp',
   // user.
-  user: 'name,value'
+  user: 'name,value',
+  // short life cache items.
+  cache: 'name,expiration,value'
 }
