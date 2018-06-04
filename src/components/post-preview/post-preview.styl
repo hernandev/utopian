@@ -5,8 +5,102 @@
     font-style normal
 
 .u-post-preview
+  width 100%
+  .rewards {
+    .q-icon {
+      margin-right 2px
+    }
+    color $grey-8
 
+    vertical-align baseline
+    font-size 14px
+    & > div {
+      line-height 24px
+    }
+    & > div + div {
 
+      margin-left 10px
+    }
+  }
+  .row.post-preview-row + .row.post-preview-row {
+    margin-top 10px
+  }
+
+  min-height 190px !important
+  &.suggestion {
+    .item-category {
+      color: $suggestion
+    }
+    border-top: 4px solid $suggestion !important
+  }
+  &.development {
+    .item-category {
+      color: $development
+    }
+    border-top: 4px solid $development !important
+  }
+  &.bug-hunting {
+    .item-category {
+      color: $bug-hunting
+    }
+    border-top: 4px solid $bug-hunting !important
+  }
+  &.translations {
+    .item-category {
+      color: $translations
+    }
+    border-top: 4px solid $translations !important
+  }
+  &.graphics {
+    .item-category {
+      color: $graphics
+    }
+    border-top: 4px solid $graphics !important
+  }
+  &.analysis {
+    .item-category {
+      color: $analysis
+    }
+    border-top: 4px solid $analysis !important
+  }
+  &.documentation {
+    .item-category {
+      color: $documentation
+    }
+    border-top: 4px solid $documentation !important
+  }
+  &.tutorials {
+    .item-category {
+      color: $tutorials
+    }
+    border-top: 4px solid $tutorials !important
+  }
+  &.video-tutorials {
+    .item-category {
+      color: $video-tutorials
+    }
+    border-top: 4px solid $video-tutorials !important
+  }
+  &.copywriting {
+    .item-category {
+      color: $copywriting
+    }
+    border-top: 4px solid $copywriting !important
+  }
+  &.blog {
+    .item-category {
+      color: $blog
+    }
+    border-top: 4px solid $blog !important
+  }
+
+  .item-category {
+    // margin-bottom 15px
+    flex-direction row !important
+    .q-icon {
+      margin-right 5px
+    }
+  }
   &.q-item-link, &.router-link-active, &.router-link-exact-active {
     background: inherit !important
     &:hover {
@@ -14,7 +108,7 @@
     }
   }
   div.time-ago {
-    font-size 14px
+    font-size 12px
     font-weight normal
     opacity 0.8
   }
@@ -32,30 +126,33 @@
     display flex
     font-weight 600
     align-self flex-end
-    margin-top 20px
-    @media (max-width $breakpoint-sm-max) {
-      margin-top 5px
-      align-self flex-start
-      flex-direction row-reverse
-    }
+    // margin-top 20px
+    //@media (max-width $breakpoint-sm-max) {
+    //  margin-top 5px
+    //  align-self flex-start
+    //  flex-direction row-reverse
+    //}
 
     div.name {
       & > span:last-child {
-        margin-left 5px
+        //margin-left 5px
+        //margin-right 5px
       }
     }
     div.author-details {
 
       div.name {
         line-height 14px
+
         font-size 14px
         vertical-align baseline
-        padding-bottom 4px
+        // padding-bottom 4px
       }
       // display flex
       // flex-direction column
       // justify-content space-between
-      margin-right 8px
+      margin-left  8px
+
       @media (max-width $breakpoint-sm-max) {
         margin-left 8px
         margin-right 0
@@ -75,9 +172,10 @@
 
   }
   .avatar {
+    margin-left 5px
     img {
-      width 34px
-      height 34px
+      width 28px
+      height 28px
       border-radius 4px
     }
   }
@@ -92,7 +190,7 @@
     vert-align middle
     line-height 1em
     // margin 30px 0 15px 0
-    font-size 1.4em
+    font-size 1.2em
     font-weight 600
     color $grey-9
   }
@@ -112,28 +210,28 @@
       text-align right
       justify-content space-between
       // align-self flex-start
-      flex: 1 0 auto
+      // flex: 1 0 auto
       padding-left 30px
       @media (max-width $breakpoint-sm-max) {
         // justify-content flex-start
-        flex-direction row-reverse
-        justify-content space-between
-        margin-top 15px
+        //flex-direction row-reverse
+        // justify-content space-between
+        // margin-top 15px
         padding-left 0
       }
-      div.details {
-        display flex
-        flex-direction column
-
-        @media (max-width $breakpoint-sm-max) {
-          flex-direction row
-          justify-content space-between
-        }
-        div.item-category {
-          margin-bottom 10px
-
-        }
-      }
+      //div.details {
+      //  display flex
+      //  flex-direction column
+      //
+      //  @media (max-width $breakpoint-sm-max) {
+      //    flex-direction row
+      //    justify-content space-between
+      //  }
+      //  div.item-category {
+      //    margin-bottom 10px
+      //
+      //  }
+      //}
 
     }
 
@@ -175,16 +273,14 @@
       white-space nowrap
       // max-width 50px
     }
-    color $primary
+    // color $primary
   }
-  div.payout {
-    font-size 20px
-  }
+
   .q-item-body {
     .q-item-except {
       margin 12px 0
       padding 0
-      font-family 'Source Sans Pro'
+      // font-family 'Source Sans Pro'
       color $grey-7
       overflow-x hidden
       overflow-y hidden
@@ -199,18 +295,25 @@
     // max-width 300px
   }
   .tag {
+    color $grey-8 !important
+
     margin-right 5px
+    &:last-child {
+      margin-right 0
+    }
   }
   .tags {
-    line-height 2em
-    margin-top 20px
+
+    // line-height 2em
+    // margin-top 20px
     white-space word-wrap
 
     .q-btn.tag {
       line-height 1em
       padding 0.285em 0.5em
       font-weight 600
-      font-size 12px
+      letter-spacing 0.025em
+      font-size 11px
       // padding 0.1em
       .q-btn-inner {
         line-height 1em

@@ -1,11 +1,17 @@
 <script>
 // imports.
-import { parseAsPlainText } from 'src/services/steem/parsers/markdown'
+import UCommentsActions from 'src/components/comments/actions/actions'
+import { renderText } from 'src/services/steem/markdown'
 
 // post preview component.
 export default {
   // component name.
   name: 'u-post-preview',
+
+  // component imports.
+  components: {
+    UCommentsActions
+  },
 
   // component props.
   props: {
@@ -23,15 +29,20 @@ export default {
 
   // component data.
   data () {
-    return {}
+    return {
+      except: null
+    }
   },
 
   // computed properties.
   computed: {
-    // generates an except to be shown on the preview.
-    except () {
-      return parseAsPlainText(this.post.body)
-    }
+    //
+  },
+  mounted () {
+    return renderText(this.post.body, false).then((data) => {
+      this.except = data.substr(0, 300)
+      return Promise.resolve(data)
+    })
   }
 }
 </script>
