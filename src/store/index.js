@@ -9,13 +9,14 @@ import * as mutations from './mutations'
 import * as actions from './actions'
 
 // import store modules.
-// import vault from './vault'
-// import accounts from './accounts'
 import common from './common'
 import auth from './auth'
+import steem from './steem'
 
+// enable vuex.
 Vue.use(Vuex)
 
+// create the store object.
 const store = new Vuex.Store({
   state,
   getters,
@@ -23,10 +24,10 @@ const store = new Vuex.Store({
   actions,
   modules: {
     auth,
-    // vault,
-    // accounts,
-    common
+    common,
+    steem
   }
 })
 
+// main export.
 export default store
