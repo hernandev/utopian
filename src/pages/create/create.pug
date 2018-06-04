@@ -1,10 +1,13 @@
 u-layout-page.u-page-create(:meta="false")
 
-  template.editor-wrapper(slot="main")
-    div.col-md-6.editor.side-editor(:style="editorStyle")
-      div.flex.fit
-        q-input(v-model="body", type="textarea")
-    div.col-md-6.editor.side-preview(:style="previewStyle")
-      div.flex.fit
-        div.post-body(v-html="preview")
+  template(slot="main")
+
+    div.editor-wrapper
+      div.side-editor(:style="editorStyle")
+        div.flex.fit.editor
+          div.editor-container#editor-container
+
+      div.side-preview(:style="previewStyle")
+        div.flex.fit.preview
+          div.post-body.markdown-content(v-html="preview")
 
