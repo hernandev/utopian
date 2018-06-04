@@ -13,19 +13,14 @@ export const expiration = ({ expiration }) => expiration
 // access token getter.
 export const token = ({ token }) => token
 
+// token expired.
+export const tokenExpired = ({ expiration }) => expiration ? expiration.isBefore(moment.utc()) : true
+
+// empty user fields.
+export const hasEmptyFields = ({ username, expiration, token }) => (isEmpty(username) || isEmpty(expiration) || isEmpty(token))
+
 // check user session is valid.
-export const check = ({ username, expiration, token }) => {
-  // check user data empty.
-  const hasEmptyFields = (isEmpty(username) || isEmpty(expiration) || isEmpty(token))
+export const check = (state) => (!hasEmptyFields(state) && !tokenExpired(state))
 
-  // return false for empty fields.
-  if (hasEmptyFields) {
-    return false
-  }
-
-  // token expiration check.
-  const tokenExpired = expiration.isBefore(moment.utc())
-
-  // token is not expired and all fields are present.
-  return (!hasEmptyFields && !tokenExpired)
-}
+// guest (inverse of check).
+export const guest = (state) => !check(state)
