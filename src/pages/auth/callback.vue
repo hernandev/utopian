@@ -3,7 +3,6 @@
 <!-- component script -->
 <script>
 // imports.
-import { mapActions } from 'vuex'
 import { get } from 'lodash-es'
 
 // auth callback component.
@@ -14,15 +13,9 @@ export default {
 
   // component methods.
   methods: {
-
-    // map auth store actions.
-    ...mapActions('auth', [
-      'loginWithCallback'
-    ]),
-
     // parse oauth callback query.
     parseQuery () {
-      return this.loginWithCallback(get(this.$route, 'query'))
+      return this.$store.dispatch('auth/loginWithCallback', get(this.$route, 'query'))
     }
   },
 
