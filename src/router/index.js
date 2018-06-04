@@ -1,27 +1,27 @@
+// main router imports.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+// import before-each route guard.
 import beforeEach from './beforeEach'
 
+// import application routes.
 import routes from './routes'
 
+// enable vue-router.
 Vue.use(VueRouter)
 
+// create the router instance.
 const Router = new VueRouter({
-  /*
-   * NOTE! Change Vue Router mode from quasar.conf.js -> build -> vueRouterMode
-   *
-   * When going with "history" mode, please also make sure "build.publicPath"
-   * is set to something other than an empty string.
-   * Example: '/' instead of ''
-   */
-
-  // Leave as is and change from quasar.conf.js instead!
+  // mode and base should be handled by quasar, not directly changed here.
   mode: process.env.VUE_ROUTER_MODE,
   base: process.env.VUE_ROUTER_BASE,
-  scrollBehavior: () => ({ y: 0 }),
+  // inject routes on router instance.
   routes
 })
 
+// apply the before each guard.
 Router.beforeEach(beforeEach)
 
+// export the router instance.
 export default Router

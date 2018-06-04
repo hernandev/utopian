@@ -3,15 +3,15 @@
 export default [
   {
     path: '/',
-    component: () => import('src/layouts/main/main'),
+    component: () => import('src/layouts/main'),
     children: [
       {path: '', name: 'home', component: () => import('src/pages/index/index'), meta: {weight: 10}},
-      {path: 'posts', name: 'posts', component: () => import('src/pages/index/index'), meta: {weight: 10}},
+      {path: 'posts', name: 'posts', component: () => import('src/pages/index/index'), meta: {weight: 10, order: 'trending'}},
       {
         path: 'posts/:category',
         name: 'posts-category',
         component: () => import('src/pages/index/index'),
-        meta: {weight: 10, order: 'created'}
+        meta: {weight: 10, order: 'new'}
       },
       {
         path: 'trending/:category',
@@ -23,7 +23,7 @@ export default [
         path: 'new/:category',
         name: 'posts.new',
         component: () => import('src/pages/index/index'),
-        meta: {weight: 10, order: 'created'}
+        meta: {weight: 10, order: 'new'}
       },
       {
         path: ':category/:author/:permlink',
@@ -31,16 +31,16 @@ export default [
         component: () => import('src/pages/post/post'),
         meta: {weight: 10}
       },
-      {path: 'create', name: 'create', component: () => import('src/pages/create/create'), meta: {weight: 10}},
-      // {path: 'activity', name: 'activity', component: () => import('src/pages/activity/activity'), meta: {weight: 20}},
+      {path: 'create', name: 'create', component: () => import('src/pages/create/create'), meta: {weight: 10, large: true}},
       {path: 'settings', name: 'settings', component: () => import('src/pages/settings/settings'), meta: {weight: 50}}
     ]
   },
   {
     path: '/auth',
-    component: () => import('src/layouts/guest/guest'),
+    component: () => import('src/layouts/guest'),
     children: [
       {path: 'login', name: 'auth.login', component: () => import('src/pages/auth/login'), meta: {weight: 10}},
+      {path: 'logout', name: 'auth.logout', component: () => import('src/pages/auth/logout'), meta: {weight: 10}},
       {path: 'callback', name: 'auth.callback', component: () => import('src/pages/auth/callback'), meta: {weight: 10}}
     ]
   },
